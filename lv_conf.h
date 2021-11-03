@@ -67,7 +67,7 @@
 
 /*Use a custom tick source that tells the elapsed time in milliseconds.
  *It removes the need to manually update the tick with `lv_tick_inc()`)*/
-#define LV_TICK_CUSTOM     1
+#define LV_TICK_CUSTOM     0
 #if LV_TICK_CUSTOM
 #define LV_TICK_CUSTOM_INCLUDE  "Arduino.h"         /*Header for the system time function*/
 #define LV_TICK_CUSTOM_SYS_TIME_EXPR (millis())     /*Expression evaluating to current system time in ms*/
@@ -452,30 +452,24 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
  * Themes
  *----------*/
 /*A simple, impressive and very complete theme*/
-
-#define LV_USE_THEME_MATERIAL    0
-#if LV_USE_THEME_DEFAULT
-  #define LV_THEME_MATERIAL_FLAG_LIGHT  0
-  #define LV_THEME_MATERIAL_FLAG_DARK   1
-  #define LV_THEME_MATERIAL_FLAG_NO_TRANSITION  0
-  #define LV_THEME_MATERIAL_FLAG_NO_FOCUS       0
-#endif /*LV_USE_THEME_MATERIAL*/
-
 #define LV_USE_THEME_DEFAULT    1
 #if LV_USE_THEME_DEFAULT
-  /*0: Light mode; 1: Dark mode*/
-  # define LV_THEME_DEFAULT_DARK     0
-  /*1: Enable grow on press*/
-  # define LV_THEME_DEFAULT_GROW     1
-  /*Default transition time in [ms]*/
-  # define LV_THEME_DEFAULT_TRANSITON_TIME    80
+
+/*0: Light mode; 1: Dark mode*/
+# define LV_THEME_DEFAULT_DARK     0
+
+/*1: Enable grow on press*/
+# define LV_THEME_DEFAULT_GROW              1
+
+/*Default transition time in [ms]*/
+# define LV_THEME_DEFAULT_TRANSITON_TIME    80
 #endif /*LV_USE_THEME_DEFAULT*/
 
 /*An very simple them that is a good starting point for a custom theme*/
-#define LV_USE_THEME_BASIC    1
+ #define LV_USE_THEME_BASIC    1
 
 /*A theme designed for monochrome displays*/
-#define LV_USE_THEME_MONO      1
+#define LV_USE_THEME_MONO       1
 
 /*-----------
  * Layouts
