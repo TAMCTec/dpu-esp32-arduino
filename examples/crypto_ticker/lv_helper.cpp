@@ -1,7 +1,8 @@
 #include "lv_helper.h"
 #include <WiFi.h>
 
-TAMC_GT911 lh_tp = TAMC_GT911(TOUCH_SDA, TOUCH_SCL, TOUCH_INT, TOUCH_RST, HA_SCREEN_WIDTH, HA_SCREEN_HEIGHT);
+// SDA, SCL, TP_INT, TP_RST are all defined in pin_arduino.h of dpu_esp32 variant
+TAMC_GT911 lh_tp = TAMC_GT911(SDA, SCL, TP_INT, TP_RST, LH_SCREEN_WIDTH, LH_SCREEN_HEIGHT);
 TFT_eSPI lh_tft = TFT_eSPI();
 
 static lv_disp_draw_buf_t lh_draw_buf;
@@ -9,7 +10,7 @@ static lv_color_t lh_buf[ LH_SCREEN_WIDTH * 10 ];
 static lv_disp_drv_t lh_disp_drv;
 static lv_indev_drv_t lh_indev_drv;
 
-lv_obj_t *ha_msgbox;
+lv_obj_t *lh_msgbox;
 
 void lh_init(int rotation){
   lh_tp.begin();
@@ -42,10 +43,10 @@ void lh_handler(void) {
 
 void lh_showMessage(const char *title, const char *message, int timeout){
   Serial.print(title);Serial.print(": ");Serial.println(message);
-  ha_msgbox = lv_msgbox_create(NULL, title, message, {}, false);
-  lv_obj_t *titleObj = lv_msgbox_get_title(ha_msgbox);
-  lv_obj_t *msgObj = lv_msgbox_get_text(ha_msgbox);
-  lv_obj_set_align(ha_msgbox, LV_ALIGN_CENTER);
+  lh_msgbox = lv_msgbox_create(NULL, title, message, {}, false);
+  lv_obj_t *titleObj = lv_msgbox_get_title(lh_msgbox);
+  lv_obj_t *msgObj = lv_msgbox_get_text(lh_msgbox);
+  lv_obj_set_align(lh_msgbox, LV_ALIGN_CENTER);
   lv_obj_set_align(titleObj, LV_ALIGN_CENTER);
   lv_obj_set_align(msgObj, LV_ALIGN_CENTER);
 
@@ -56,7 +57,7 @@ void lh_showMessage(const char *title, const char *message, int timeout){
   }
 }
 void lh_hideMessage(){
-  lv_msgbox_close(ha_msgbox);
+  lv_msgbox_close(lh_msgbox);
   lv_timer_handler();
 }
 static void lh_eventHandler(lv_event_t * event) {

@@ -1,8 +1,10 @@
 #include "ha_helper.h"
 #include <WiFi.h>
 #include <PubSubClient.h>
+#include <Arduino.h>
 
-TAMC_GT911 ha_tp = TAMC_GT911(TOUCH_SDA, TOUCH_SCL, TOUCH_INT, TOUCH_RST, HA_SCREEN_WIDTH, HA_SCREEN_HEIGHT);
+// SDA, SCL, TP_INT, TP_RST are all defined in pin_arduino.h of dpu_esp32 variant
+TAMC_GT911 ha_tp = TAMC_GT911(SDA, SCL, TP_INT, TP_RST, HA_SCREEN_WIDTH, HA_SCREEN_HEIGHT);
 TFT_eSPI ha_tft = TFT_eSPI();
 
 

@@ -19,10 +19,6 @@
 #define DEVICE_NAME_LOWER "dpu-esp32"
 #define CLIENT_ID "client-dpu-esp32"
 
-#define TOUCH_SDA  4
-#define TOUCH_SCL  5
-#define TOUCH_INT 25
-#define TOUCH_RST 26
 #define HA_SCREEN_WIDTH  320
 #define HA_SCREEN_HEIGHT 240
 
